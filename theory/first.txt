@@ -17,3 +17,6 @@ array.forEach((element) => console.log(element));
 
 
 Number have a method called .toFixed() and it takes a number value that tells who digits comes after the decimal it also convert the number into a string
+
+Remainder
+The order of script tag who loaded in html to link the javaScript files its loade first file and then second the order is important
