@@ -1,0 +1,19 @@
+javaScript structure
+1.save the data
+2.creates the html elements
+3.combines the all html 
+4.Put it on the webPage
+
+for each loop 
+
+const array = ["a", "b", "c"];
+
+array.forEach((element) => console.log(element));
+
+// Expected output: "a"
+// Expected output: "b"
+// Expected output: "c"
+
+
+
+Number have a method called .toFixed() and it takes a number value that tells who digits comes after the decimal it also convert the number into a string
