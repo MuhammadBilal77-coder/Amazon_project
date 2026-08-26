@@ -20,3 +20,9 @@ Number have a method called .toFixed() and it takes a number value that tells wh
 
 Remainder
 The order of script tag who loaded in html to link the javaScript files its loade first file and then second the order is important
+
+
+Main idea of javaScript
+1.Save the data 
+2.Generate the html 
+3.Make it interactive
