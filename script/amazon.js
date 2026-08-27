@@ -1,6 +1,5 @@
-import {cart} from '../data/cart.js';
-import {products} from '../data/products.js';
-
+import { cart,addTocart } from "../data/cart.js";
+import { products } from "../data/products.js";
 let productsHtml = "";
 products.forEach((products) => {
   productsHtml += `
@@ -56,46 +55,32 @@ products.forEach((products) => {
   `;
 });
 
+// Fuctions
+
+function updateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((item) => {
+    cartQuantity += item.quantity;
+  });
+  document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+}
+
 document.querySelector(".js-products-grid").innerHTML = productsHtml;
 
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.productId;
-    let matchingItem;
-
-
     const timer = setTimeout(() => {
       const messageElement = button.closest(".product-container");
       const addedMessage = messageElement.querySelector(
-      `.js-added-to-cart-${productId}`);
-        addedMessage.style.opacity = "1";
-        setTimeout(()=>{
-          addedMessage.style.opacity = "0";
-        },2000);
+        `.js-added-to-cart-${productId}`,
+      );
+      addedMessage.style.opacity = "1";
+      setTimeout(() => {
+        addedMessage.style.opacity = "0";
+      }, 2000);
     }, 1000);
-    
-
-    cart.forEach((item) => {
-      if (productId === item.productId) {
-        matchingItem = item;
-      }
-    });
-    const quantityElement = document.querySelector(
-      `.js-quantity-selector-${productId}`,
-    );
-    const number = Number(quantityElement.value);
-    if (matchingItem) {
-      matchingItem.quantity += number;
-    } else {
-      cart.push({
-        productId: productId,
-        quantity: number,
-      });
-    }
-    let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
+    addTocart(productId);
+    updateCartQuantity();
   });
 });

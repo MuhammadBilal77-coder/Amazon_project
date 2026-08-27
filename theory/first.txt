@@ -68,3 +68,15 @@ about ****import*****
 Advantages of moduls
 1.To avoid the name conflicts we use to when import the variable write as  {cart as myCart} so it input the cart but change its name with myCart so the name conflicts will be removed.
 2.Don't have to worry about order of files
+
+
+
+the file that contains the other files for import as type module is called the entery point
+
+
+imort complete file
+
+imort * as cartModule from '../data/cart.js';
+
+cartModule.cart
+cartModule.addToCart('id');
