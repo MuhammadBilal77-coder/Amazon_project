@@ -37,3 +37,34 @@ data-name= "info-about-product"
 
 button-dataset:
 its a property that wants to abail access the attribute of the particular element
+
+
+Naming conflicts
+we not use the same word to redeclear in the other javaScript file.
+
+we remove the naming conflicts by using moduls.
+
+
+
+Get a Variable Out of a File
+1.Add type="module" attribute
+2.Export
+3.import
+
+
+1 . Add this attribute in the file where you want to load the Variable of external file without use script tag because if we use script we cannot declear the new Variable by that same name 
+2.Go to the file where is your Variable and you want to available it on the other file before this variable write Export
+3.Go to your file where you you want to imprt write the keyword import {variable} from '..path';
+**the '..' said that go out from this folder
+
+
+
+about ****import*****
+1.put all imports at the top of the file
+2.we need to use live server because the module cannot work when we open the file directly it works only with live server.
+
+
+
+Advantages of moduls
+1.To avoid the name conflicts we use to when import the variable write as  {cart as myCart} so it input the cart but change its name with myCart so the name conflicts will be removed.
+2.Don't have to worry about order of files
