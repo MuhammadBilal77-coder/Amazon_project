@@ -26,3 +26,14 @@ Main idea of javaScript
 1.Save the data 
 2.Generate the html 
 3.Make it interactive
+
+
+
+Data attribute
+its an html attribute that contains the information about a product its syntx is
+data-name= "info-about-product"
+
+
+
+button-dataset:
+its a property that wants to abail access the attribute of the particular element
