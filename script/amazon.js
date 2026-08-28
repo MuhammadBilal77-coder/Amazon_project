@@ -78,3 +78,7 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     addTocart(productId);
   });
 });
+
+let loaclItemRepresent = JSON.parse(localStorage.getItem("cartQuantity"));
+  let homeCartQuantity = document.querySelector(".js-cart-quantity");
+  homeCartQuantity.innerHTML = loaclItemRepresent;

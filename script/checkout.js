@@ -13,7 +13,6 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
-    console.log(matchingProduct);
 
   carSummaryHTML += `
 <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -93,7 +92,6 @@ cart.forEach((cartItem) => {
   
   `;
 });
-console.log(carSummaryHTML);
 document.querySelector('.js-order-summary').innerHTML = carSummaryHTML;
 
 
@@ -106,6 +104,5 @@ document.querySelectorAll('.js-delete-link').forEach((link)=>{
     container.remove();
   });
 });
-
  const store = JSON.parse(localStorage.getItem('cartQuantity'));
 document.querySelector('.js-return-to-home-link').innerHTML = store;
