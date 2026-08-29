@@ -1,4 +1,9 @@
-import { cart, removeFromCart, updateCartQuantity } from "../data/cart.js";
+import {
+  cart,
+  removeFromCart,
+  updateDeliverOption,
+  updateCartQuantity,
+} from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
@@ -87,7 +92,8 @@ function deliveryoptionsHTML(matchingProduct, cartItem) {
         : `$${formatCurrency(deliveryOption.priceCents)}`;
 
     html += `
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option " data-product-id="${matchingProduct.id}"
+      data-delivery-option-id="${deliveryOption.id}">
         <input
           type="radio" 
           ${isChecked ? "checked" : ""}
@@ -210,6 +216,9 @@ function update() {
         // Update cart
         matchingProduct.quantity = inputValue;
 
+        // Save cart and update cart quantity
+        updateCartQuantity();
+
         // Update quantity on page
         const quantityElement = bun
           .closest(".cart-item-container")
@@ -222,3 +231,31 @@ function update() {
 }
 
 update();
+
+document.querySelectorAll(".js-delivery-option").forEach((element) => {
+  element.addEventListener("click", () => {
+    const { productId, deliveryOptionId } = element.dataset;
+
+    // Update cart
+    updateDeliverOption(productId, deliveryOptionId);
+
+    // Find the selected delivery option
+    const selectedOption = deliveryOption.find((option) => {
+      return option.id === deliveryOptionId;
+    });
+
+    // Calculate new delivery date
+    const deliveryDate = dayjs().add(selectedOption.deliveryDays, "days");
+
+    const dateString = deliveryDate.format("dddd, MMMM D");
+
+    // Find this product's container
+    const container = element.closest(".cart-item-container");
+
+    // Find delivery date for this product
+    const deliveryDateElement = container.querySelector(".delivery-date");
+
+    // Change the delivery date
+    deliveryDateElement.textContent = `Delivery date: ${dateString}`;
+  });
+});
