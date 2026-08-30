@@ -51,7 +51,7 @@ export function RegenerateHTML() {
   </div>
 
   <div class="payment-summary-row">
-    <div>Items (3):</div>
+    <div class="js-payment-summary-items">Items(${JSON.parse(localStorage.getItem("cartQuantity"))}):</div>
     <div class="payment-summary-money">$${itemsAmount.toFixed(2)}</div>
   </div>
 
@@ -79,6 +79,7 @@ export function RegenerateHTML() {
     Place your order
   </button>
 `;
+
   return paymentSummary;
 }
 

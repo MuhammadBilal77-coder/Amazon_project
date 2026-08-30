@@ -11,6 +11,8 @@ import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOption } from "../../data/deliveryOptions.js";
 import { RegenerateHTML } from "./paymentSummary.js";
 
+
+
 let carSummaryHTML = "";
 let matchingProduct;
 cart.forEach((cartItem) => {
