@@ -3,13 +3,13 @@ import { products } from "../../data/products.js";
 
 export function renderPaymentSummary() {
   let productId;
-  let totalPrice = 0;
+  let itemsPrice = 0;
   cart.forEach((cartItem) => {
     productId = cartItem.productId;
     products.forEach((product) => {
       if (product.id === productId) {
-        totalPrice += ((product.priceCents * cartItem.quantity) /100);
+        itemsPrice += ((product.priceCents * cartItem.quantity) /100);
        }});});
-       console.log(totalPrice);
+       console.log(itemsPrice);
 }
 renderPaymentSummary();
