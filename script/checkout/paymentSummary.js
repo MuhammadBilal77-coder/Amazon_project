@@ -1,10 +1,19 @@
 import { cart } from "../../data/cart.js";
 import { products } from "../../data/products.js";
-import { ShippingPrice } from "../../data/deliveryOptions.js";
+import { deliveryOption } from "../../data/deliveryOptions.js";
+
+function ShippingPrice(ItemId) {
+  let shippingPriceCents = 0;
+  deliveryOption.forEach((Item) => {
+    if (Item.id === ItemId) {
+      shippingPriceCents += Item.priceCents;
+    }
+  });
+  return shippingPriceCents;
+}
 
 export function renderPaymentSummary() {
   let itemsPrice = 0;
-
   cart.forEach((cartItem) => {
     products.forEach((product) => {
       if (product.id === cartItem.productId) {
@@ -16,10 +25,8 @@ export function renderPaymentSummary() {
   return itemsPrice / 100;
 }
 
-// Shipping Price of all items
 function ship() {
   let shipping = 0;
-
   cart.forEach((cartItem) => {
     shipping += ShippingPrice(cartItem.deliveryOptionId);
   });
@@ -27,27 +34,18 @@ function ship() {
   return shipping / 100;
 }
 
-// Total price of all items
-const itemsAmount = renderPaymentSummary();
-
-
-// Shipping
-const totalShipping = ship();
-
-
-// Result before tax
-const beforeTaxPrice = itemsAmount + totalShipping;
-
-
-// Tax of all items
-const estimateTax = beforeTaxPrice * 0.1;
-
-
-// Order total
-const orderTotal = beforeTaxPrice + estimateTax;
-
-
-const paymentSummary = `
+export function RegenerateHTML() {
+  // Total price of all items
+  const itemsAmount = renderPaymentSummary();
+  // Shipping
+  const totalShipping = ship();
+  // Result before tax
+  const beforeTaxPrice = itemsAmount + totalShipping;
+  // Tax of all items
+  const estimateTax = beforeTaxPrice * 0.1;
+  // Order total
+  const orderTotal = beforeTaxPrice + estimateTax;
+  const paymentSummary = `
   <div class="payment-summary-title">
     Order Summary
   </div>
@@ -81,5 +79,8 @@ const paymentSummary = `
     Place your order
   </button>
 `;
+  return paymentSummary;
+}
 
-document.querySelector(".js-payment-summary").innerHTML = paymentSummary;
+let re = document.querySelector(".js-payment-summary");
+re.innerHTML = RegenerateHTML();

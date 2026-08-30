@@ -9,6 +9,7 @@ import { formatCurrency } from "../utils/money.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 
 import { deliveryOption } from "../../data/deliveryOptions.js";
+import { RegenerateHTML } from "./paymentSummary.js";
 
 let carSummaryHTML = "";
 let matchingProduct;
@@ -127,6 +128,8 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
       `.js-cart-item-container-${productId}`,
     );
     container.remove();
+    let re = document.querySelector(".js-payment-summary");
+    re.innerHTML = RegenerateHTML();
   });
 });
 const store = JSON.parse(localStorage.getItem("cartQuantity"));
@@ -237,6 +240,8 @@ document.querySelectorAll(".js-delivery-option").forEach((element) => {
 
     // Update cart
     updateDeliverOption(productId, deliveryOptionId);
+    let re = document.querySelector(".js-payment-summary");
+    re.innerHTML = RegenerateHTML();
 
     // Find the selected delivery option
     const selectedOption = deliveryOption.find((option) => {
@@ -258,5 +263,3 @@ document.querySelectorAll(".js-delivery-option").forEach((element) => {
     deliveryDateElement.textContent = `Delivery date: ${dateString}`;
   });
 });
-
-

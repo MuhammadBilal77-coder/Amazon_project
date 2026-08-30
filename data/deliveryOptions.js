@@ -15,13 +15,3 @@ export const deliveryOption = [
     priceCents: 999,
   },
 ];
-
-export function ShippingPrice(ItemId) {
-  let shippingPriceCents = 0;
-  deliveryOption.forEach((Item) => {
-    if (Item.id === ItemId) {
-      shippingPriceCents += Item.priceCents;
-    }
-  });
-  return shippingPriceCents;
-}
